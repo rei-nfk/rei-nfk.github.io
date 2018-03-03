@@ -1,0 +1,38 @@
+#back {
+    width: 100%;
+    margin: auto;
+    background-color: #74BAB0;
+}
+
+#wrapper {
+    width: 848px;
+    margin: auto;
+    background-color: white;
+}
+
+.content {
+    margin: 10px;
+}
+
+h1 {
+    text-align: center
+}
+
+h2 {
+    margin-top: 30px;
+}
+
+select {
+    height: 40px;
+    width: auto;
+    font-size: 15px;
+}
+
+#answer {
+    font-size: 30px;
+}
+
+canvas {
+    border: dotted 10px #DA1F3C;
+    margin-left: auto;
+}

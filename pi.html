@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>円周率って何なのよ</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/pi.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="back">
+        <div id="wrapper">
+            <div class="content">
+                <h1><img src="img/title.png" alt="円周率って何なのよ"></h1>
+                <h2>あのあれ、何だっけ・・・丸のやつ？</h2>
+                <p>人類は40万年くらい前からいるんだけど、ここ4000年くらいは円周率について考えて来たらしいよ！！</p>
+                <ul>
+                    <li>・紀元前2000年ころ：とりあえず六角形で考えてみた時代</li>
+                    <li>・0年頃：とりあえず8/25位で考えてみた時代</li>
+                    <li>・1400年頃：3.14159265359まで分かった</li>
+                </ul>
+            </div>
+            <div class="content">
+                <h2>で、結局何なの？ 5なの？</h2>
+                <p>少なくとも5じゃないよ！ここまで読んでた？<br>ちなみに「ゆとり教育では円周率が3になった」という説は誤解らしいよ！</p>
+            </div>
+            <div class="content">
+                <h2>じゃあ何なのよ！</h2>
+                <p>計算してみるか・・・。<br><br>
+                まあそもそも円周率って細かく計算すると無限に小数が続くんだけど、<br>ここでは
+                「中心までの長さが１の多角形では、多角形の角の数を増やしていくと、<br>段々なめらかな丸に近づいて、辺の長さは円周率に近づく」と言う考え方で、計算してみるよ。<br>
+                何角形までやってみる？</p>
+                <select name="hnum_select" id="hnum_select_id">
+                   <option value="3">選んでみよう</option>
+                   <option value="4">とりあえずの4角形</option>
+                   <option value="8">ちょっとなめらか8角形</option>
+                   <option value="32">結構なめらか32角形</option>
+                   <option value="100">CPUへのいじめ：100角形</option>
+                   <option value="200">もうやめてあげて：200角形</option>
+                </select>
+                <p id="state"></p>
+                <p id="answer"></p>
+                <canvas id="pi_calc" width="800" height="800"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        //準備
+        var can = $("#pi_calc")[0];
+        var ctx = can.getContext("2d");
+        var hnum=0;
+        //何角形まで計算するかを決め、描画
+        $("#hnum_select_id").on("change", function() {
+            //何角形まで計算するか
+            hnum = Number($('select[name="hnum_select"]').val());
+            console.log(hnum);
+            ctx.clearRect(0, 0, can.width, can.height)
+            if (hnum == 200) {
+                alert("ほんとにやるの？まあキャンセルボタンはないですけどね。")
+            }
+            //半径
+            var radius = 400;
+            //中心
+            var center_X = can.width / 2;
+            var center_Y = can.height / 2;
+
+            var hnum_temp = 4
+
+            var drawing = setInterval(function() {
+                //過去の描画を削除
+                ctx.clearRect(0, 0, can.width, can.height)
+                //多角形（三角形の集まり）を描画
+                for (var i = 0; i < hnum_temp; i++) {
+                    //一つ３角形を描く
+                    //        console.log(center_X);
+                    ctx.beginPath();
+                    ctx.moveTo(center_X, center_Y);
+                    var point1_angle = (Math.PI * 2 / hnum_temp) * i;
+                    var point1_X = center_X + radius * Math.cos(point1_angle);
+                    var point1_Y = center_X + radius * Math.sin(point1_angle);
+                    ctx.lineTo(point1_X, point1_Y);
+                    var point2_angle = (Math.PI * 2 / hnum_temp) * (i + 1);
+                    var point2_X = center_X + radius * Math.cos(point2_angle);
+                    var point2_Y = center_X + radius * Math.sin(point2_angle);
+                    ctx.lineTo(point2_X, point2_Y);
+                    ctx.closePath();
+                    ctx.stroke();
+                    console.log(i);
+                    console.log(hnum_temp);
+                }
+                var state_text = hnum_temp + "角形だと、円周率は・・・"
+                $("#state").text(state_text);
+                var ans_text = hnum_temp * (Math.sin(Math.PI / hnum_temp)) + "!!!";
+                $("#answer").text(ans_text);
+                hnum_temp++;
+                if (hnum_temp > hnum) {
+                    clearInterval(drawing);
+                }
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>
