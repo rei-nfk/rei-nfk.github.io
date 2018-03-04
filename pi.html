@@ -12,40 +12,42 @@
 
 <body>
     <div id="back">
-        <div id="wrapper">
-            <div class="content">
-                <h1><img src="img/title.png" alt="円周率って何なのよ"></h1>
-                <h2>あのあれ、何だっけ・・・丸のやつ？</h2>
-                <p>人類は40万年くらい前からいるんだけど、ここ4000年くらいは円周率について考えて来たらしいよ！！</p>
-                <ul>
-                    <li>・紀元前2000年ころ：とりあえず六角形で考えてみた時代</li>
-                    <li>・0年頃：とりあえず8/25位で考えてみた時代</li>
-                    <li>・1400年頃：3.14159265359まで分かった</li>
-                </ul>
-            </div>
-            <div class="content">
-                <h2>で、結局何なの？ 5なの？</h2>
-                <p>少なくとも5じゃないよ！ここまで読んでた？<br>ちなみに「ゆとり教育では円周率が3になった」という説は誤解らしいよ！</p>
-            </div>
-            <div class="content">
-                <h2>じゃあ何なのよ！</h2>
-                <p>計算してみるか・・・。<br><br>
-                まあそもそも円周率って細かく計算すると無限に小数が続くんだけど、<br>ここでは
-                「中心までの長さが１の多角形では、多角形の角の数を増やしていくと、<br>段々なめらかな丸に近づいて、辺の長さは円周率に近づく」と言う考え方で、計算してみるよ。<br>
-                何角形までやってみる？</p>
-                <select name="hnum_select" id="hnum_select_id">
-                   <option value="3">選んでみよう</option>
-                   <option value="4">とりあえずの4角形</option>
-                   <option value="8">ちょっとなめらか8角形</option>
-                   <option value="32">結構なめらか32角形</option>
-                   <option value="100">CPUへのいじめ：100角形</option>
-                   <option value="200">もうやめてあげて：200角形</option>
-                </select>
-                <p id="state"></p>
-                <p id="answer"></p>
-                <canvas id="pi_calc" width="800" height="800"></canvas>
-            </div>
-        </div>
+       <div id="outer_wrapper">
+           <div id="wrapper">
+               <div class="content">
+                   <h1><img src="img/title.png" alt="円周率って何なのよ"></h1>
+                   <h2>あのあれ、何だっけ・・・丸のやつ？</h2>
+                   <p>人類は40万年くらい前からいるんだけど、ここ4000年くらいは円周率について考えて来たらしいよ！！</p>
+                   <ul>
+                       <li>・紀元前2000年ころ：とりあえず六角形で考えてみた時代</li>
+                       <li>・0年頃：とりあえず8/25位で考えてみた時代</li>
+                       <li>・1400年頃：3.14159265359まで分かった</li>
+                   </ul>
+               </div>
+               <div class="content">
+                   <h2>で、結局何なの？ 5なの？</h2>
+                   <p>少なくとも5じゃないよ！ここまで読んでた？<br>ちなみに「ゆとり教育では円周率が3になった」という説は誤解らしいよ！</p>
+               </div>
+               <div class="content">
+                   <h2>じゃあ何なのよ！</h2>
+                   <p>計算してみるか・・・。<br><br>
+                       まあそもそも円周率って細かく計算すると無限に小数が続くんだけど、<br>ここでは
+                       「中心までの長さが１の多角形では、多角形の角の数を増やしていくと、<br>段々なめらかな丸に近づいて、辺の長さは円周率に近づく」と言う考え方で、計算してみるよ。<br>
+                       何角形までやってみる？</p>
+                   <select name="hnum_select" id="hnum_select_id">
+                       <option value="3">選んでみよう</option>
+                       <option value="4">とりあえずの4角形</option>
+                       <option value="8">ちょっとなめらか8角形</option>
+                       <option value="32">結構なめらか32角形</option>
+                       <option value="100">CPUへのいじめ：100角形</option>
+                       <option value="200">もうやめてあげて：200角形</option>
+                   </select>
+                   <p id="state"></p>
+                   <p id="answer"></p>
+                   <canvas id="pi_calc" width="800" height="800"></canvas>
+               </div>
+           </div>
+       </div>
     </div>
     <script>
         //準備
@@ -61,6 +63,7 @@
             if (hnum == 200) {
                 alert("ほんとにやるの？まあキャンセルボタンはないですけどね。")
             }
+            
             //半径
             var radius = 400;
             //中心

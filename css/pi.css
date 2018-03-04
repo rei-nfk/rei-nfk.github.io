@@ -4,6 +4,12 @@
     background-color: #74BAB0;
 }
 
+#outer_wrapper {
+    width: 868px;
+    margin: auto;
+    background-color: #74BAB0;
+}
+
 #wrapper {
     width: 848px;
     margin: auto;
